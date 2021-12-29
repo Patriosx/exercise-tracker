@@ -1,0 +1,6 @@
+.card-completed {
+  border-left: 6px solid #1c6ea4;
+}
+.card-incompleted {
+  border-left: 6px solid #a41c1c;
+}

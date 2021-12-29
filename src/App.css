@@ -1,38 +1,112 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--tealblue-color);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --red-color: #a31621;
+  --snow-color: #fcf7f8;
+  --gray-color: #ced3dc;
+  --cerulean-color: #90c2e7;
+  --tealblue-color: #4e8098;
+  --purple-color: #0d0628;
+  --purple2-color: rgba(21, 6, 40, 0.842);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* GENERAL */
+a {
+  text-decoration: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+li {
+  list-style: none;
+}
+ul {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-evenly;
+}
+button {
+  background-color: var(--purple-color);
+  color: var(--snow-color);
+  font-weight: bolder;
+}
+button:hover {
+  background-color: var(--purple2-color);
+  transition: 1s;
+}
+h1 {
+  padding: 1rem;
+}
+/* ********** */
+body {
+  text-align: center;
+  background-color: var(--cerulean-color);
+  height: 100%;
+}
+.home-container {
+  border: 1px solid black;
+  background-color: var(--snow-color);
+  width: 90%;
+  margin: 0 auto;
+  padding: 3rem;
+  margin-top: 50px;
+  max-width: 600px;
+}
+.navbar {
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+}
+.filter-container {
+  background-color: var(--cerulean-color);
+}
+.filter-container li {
+  color: var(--snow-color);
+}
+/* CREATE EXERCISE */
+.create-container {
+  padding: 1rem;
+}
+.create-container input,
+.create-container button,
+.create-container textarea {
+  width: 80%;
+  padding: 0.4rem;
+  display: block;
+  margin: 0.4rem auto;
+}
+.create-container input,
+.create-container textarea {
+  color: var(--purple-color);
+}
+/* EXERCISES CARD */
+.exercise-card {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: left;
+  padding: 0.4rem;
+  box-shadow: 5px 5px 1px -3px #000000;
+  margin-bottom: 0.4rem;
+}
+.exercise-card .description {
+  padding: 1rem;
+}
+.exercise-card .actions {
+  position: absolute;
+  display: flex;
+  right: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.active {
+  text-decoration: underline;
+  color: var(--purple2-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.filter-container .active-filter {
+  text-decoration: underline;
+  color: var(--purple2-color);
+}
+.filter-container a {
+  color: var(--snow-color);
 }
