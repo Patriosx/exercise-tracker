@@ -1,46 +1,54 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Home";
 
 function App() {
-  const [exerciseList, setExerciseList] = useState([
-    {
-      id: "1",
-      completed: true,
-      title: "Ejercicio 1",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat tempore expedita dicta, quos fuga similique suscipit, eius culpa facilis tempora a quas esse.",
-    },
-  ]);
-
-  const getData = () => {
-    console.log(exerciseList);
-  };
-  const addExercise = (newExercise) => {
-    setExerciseList([...exerciseList, newExercise]);
-  };
-  const deleteExercise = (id) => {
-    if (window.confirm("r u sure?")) {
-      const aux = exerciseList.filter((item) => item.id !== id);
-      setExerciseList(aux);
+  const [exerciseList, setExerciseList] = useState([]);
+  const URL = "http://localhost:3000/data";
+  const getData = async () => {
+    try {
+      const response = await axios(URL);
+      setExerciseList(response.data);
+    } catch (error) {
+      console.log(error);
     }
   };
-  const updateExercise = (id, exercise) => {
-    const clone = [...exerciseList];
-    const index = exerciseList.findIndex((item) => item.id === id);
-
-    clone[index].title = exercise.title;
-    clone[index].description = exercise.description;
-    setExerciseList(clone);
+  const addExercise = async (newExercise) => {
+    try {
+      await axios.post(URL, newExercise);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const toggleCompleted = (id) => {
-    const clone = [...exerciseList];
-    const index = exerciseList.findIndex((item) => item.id === id);
-    clone[index].completed = !clone[index].completed;
-    setExerciseList(clone);
+  const deleteExercise = async (id) => {
+    if (window.confirm("r u sure?")) {
+      try {
+        await axios.delete(`${URL}/${id}`);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+  const updateExercise = async (id, exercise) => {
+    try {
+      await axios.patch(`${URL}/${id}`, exercise);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const toggleCompleted = async (id, isCompleted) => {
+    try {
+      await axios.patch(`${URL}/${id}`, { completed: !isCompleted });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  useEffect(() => {
+    getData();
+  }, [exerciseList]);
   return (
     <div className="App">
       <BrowserRouter>
